@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Channel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/2.0.0/toaster.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/locale/en-ca.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/2.0.0/toaster.css">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+    <!-- endbower -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/app/style/style.css">
+    <!-- endinject -->
+</head>
+
+<body ng-controller="WeatherCtrl as vm" class="ng-cloak">
+    <header>
+        <h1 class="text-left">Weather Report</h1>
+        <br />
+        <h4 class="text-left">Always know if you'll need an umbrella!</h4>
+    </header>
+    <div class="btn-group-lg primary" role="group" aria-label="major cities">
+        <button type="button" class="btn btn-primary" ng-click="vm.activate('San Diego')">San Diego</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.activate('New York')">New York</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.activate('Washington DC')">Washington DC</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.activate('London')">London</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.activate('Tokyo')">Tokyo</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.activate('Palm Springs')">Palm Springs</button>
+    </div>
+    <div class="citySearch">
+        <input class="col-sm-10 input-city" placeholder="Search for City" ng-model="vm.city">
+        <button type="button" class="col-sm-2 btn btn-default go" ng-click="vm.activate(vm.city)" my-enter="vm.activate(vm.city)">Go!</button>
+    </div>
+    <br />
+    <div class="col-md-6 info-block" class="ng-cloak">
+        <h4 class="info-header">City Information</h4>
+        <div class="row">
+            <h3 class="text-center icon" class="ng-cloak">{{vm.WeatherResponse.name}}</h3>
+            <p class="text-center">Lat/Long: {{vm.WeatherResponse.coord.lat}}, {{vm.WeatherResponse.coord.lon}}</p>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong>Temperature</strong></p>
+                <p class="information">{{vm.WeatherResponse.main.temp}}F</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Pressure</strong></p>
+                <p class="information">{{vm.WeatherResponse.main.pressure}}kPa</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Humidity</strong></p>
+                <p class="information">{{vm.WeatherResponse.main.humidity}}%</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong>Lowest Tem</strong></p>
+                <p class="information">{{vm.WeatherResponse.main.temp_min}}F</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Highest Temp</strong></p>
+                <p class="information">{{vm.WeatherResponse.main.temp_max}}F</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Wind Speed</strong></p>
+                <p class="information">{{vm.WeatherResponse.wind.speed}}mph</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 info-block">
+        <h4 class="info-header">Search History</h4>
+        <table class="table table-striped" onload="vm.activate('San Diego')">
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody class="search-history">
+                <tr ng-repeat="search in vm.searchHistory" class="ng-cloak">
+                    <td>{{search.city}}</td>
+                    <td>{{search.time}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- bower:js -->
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/toastr/toastr.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower -->
+<!--     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script> -->
+    <!-- inject:js -->
+    <script src="/app/app.js"></script>
+    <script src="/app/controller.js"></script>
+    <script src="/app/factory.js"></script>
+    <!-- endinject -->
+</body>
+
+</html>

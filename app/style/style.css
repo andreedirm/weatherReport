@@ -1,0 +1,47 @@
+body {
+	margin: 3%;
+}
+
+h1 {
+	font-size: 400%;
+}
+
+header {
+	background-color: #e6e6e6;
+	padding: 30px 50px; 
+	margin: 3% 0;
+}
+
+.go {
+	display: inline-block;
+}
+
+.info-header {
+	background-color: #DEF;
+	border: 2px solid #DEF;
+	border-radius: 10px;
+	padding: 15px;
+	color: #37A;
+}
+
+table {
+	margin: 3% 0;
+}
+
+td {
+	padding: 10px 0;
+}
+
+input {
+	padding: 5px 0;
+}
+
+.information {
+	color: #004d00;
+	font-weight: bold;
+	font-size: 130%;
+}
+
+.info-block {
+	margin-bottom: 20px;
+}
